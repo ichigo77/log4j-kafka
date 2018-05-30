@@ -1,4 +1,4 @@
-package de.richter.logging.kafka.configuration.test;
+package de.richter.logging.kafka.test.configuration;
 
 import de.richter.logging.kafka.configuration.KafkaConfigurationException;
 import de.richter.logging.kafka.configuration.KafkaProperties;

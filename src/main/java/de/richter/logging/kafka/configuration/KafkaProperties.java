@@ -8,6 +8,8 @@ public class KafkaProperties {
 
     private String serverBootstrap;
     private String topic;
+    private SerializerTypes serializer = SerializerTypes.STRING;
+    private MessageSendType sendType = MessageSendType.ASYNC;
 
     public KafkaProperties(String kafkaServer, String kafkaTopic) throws KafkaConfigurationException {
         this.setServerBootstrap(kafkaServer);
@@ -25,9 +27,7 @@ public class KafkaProperties {
 
     private boolean ExistRequiredProperty(String property) {
         return (property != null && !property.isEmpty());
-    }
-
-    public String getTopic() {
+    }  public String getTopic() {
         return topic;
     }
 
@@ -36,12 +36,28 @@ public class KafkaProperties {
         this.topic = topic;
     }
 
+    public SerializerTypes getSerializer() {
+        return serializer;
+    }
+
+    public void setSerializer(SerializerTypes serializer) {
+        this.serializer = serializer;
+    }
+
+    public MessageSendType getSendType() {
+        return sendType;
+    }
+
+    public void setSendType(MessageSendType sendType) {
+        this.sendType = sendType;
+    }
+
     public Properties GetKafkaProperties(){
         Properties props = new Properties();
         props.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,this.serverBootstrap);
         props.setProperty("Topic",this.topic);
-        props.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,"org.apache.kafka.common.serialization.StringSerializer");
-        props.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,"org.apache.kafka.common.serialization.StringSerializer");
+        props.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,serializer.getSerializerNamespace());
+        props.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,serializer.getSerializerNamespace());
         return props;
     }
 }

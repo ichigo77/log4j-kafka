@@ -12,8 +12,8 @@ public class KafkaByteProducer extends LogKafkaProducer {
     private Producer<Byte,Byte> client;
 
     @Override
-    public void sendLogEvent(String message) throws Exception {
-
+    public void sendLogEvent(String message) throws NullPointerException {
+        if(this.sendMessageInstanceImpl == null) throw new NullPointerException("The implementation of interface IKafkaSendMessage is null");
     }
 
     @Override

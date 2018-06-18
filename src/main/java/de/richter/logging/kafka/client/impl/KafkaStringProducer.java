@@ -12,9 +12,9 @@ public class KafkaStringProducer  extends LogKafkaProducer{
     private Producer<String,String>client=null;
 
     @Override
-    public void sendLogEvent(java.lang.String message) throws Exception {
-        if(this.sendMessageInstanceImpl == null) throw new Exception("");
-        ProducerRecord<String, String> record = new ProducerRecord<String,String>(props.getTopic(),message);
+    public void sendLogEvent(java.lang.String message) throws NullPointerException {
+        if(this.sendMessageInstanceImpl == null) throw new NullPointerException("The implementation of interface IKafkaSendMessage is null");
+        ProducerRecord<String, String> record = new ProducerRecord<String, String>(props.getTopic(), message);
         this.sendMessageInstanceImpl.sendKafkaMessage(client, record);
     }
 

@@ -9,8 +9,8 @@ public class KafkaAvroProducer extends LogKafkaProducer {
 
 
     @Override
-    public void sendLogEvent(String message) throws Exception {
-
+    public void sendLogEvent(String message) throws NullPointerException {
+        if(this.sendMessageInstanceImpl == null) throw new NullPointerException("The implementation of interface IKafkaSendMessage is null");
     }
 
     @Override

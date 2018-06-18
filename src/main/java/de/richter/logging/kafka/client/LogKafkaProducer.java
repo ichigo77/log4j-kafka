@@ -9,7 +9,7 @@ public abstract class LogKafkaProducer {
     protected KafkaProperties props;
     protected IKafkaSendMessage sendMessageInstanceImpl;
 
-    public abstract void sendLogEvent(String message) throws Exception;
+    public abstract void sendLogEvent(String message) throws NullPointerException;
     public abstract SerializerTypes getSerializerType();
     public abstract void initialiseProducer(KafkaProperties properties) ;
 

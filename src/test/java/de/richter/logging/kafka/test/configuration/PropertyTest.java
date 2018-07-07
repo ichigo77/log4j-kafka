@@ -10,7 +10,7 @@ import org.apache.kafka.clients.producer.ProducerConfig;
 import java.util.Properties;
 
 @Tag("PropertyTests")
-class PropertyTests {
+class PropertyTest {
 
     @Test
     public void NoBootstrapServerInfoShallThrowKafkaConfigurationException(){

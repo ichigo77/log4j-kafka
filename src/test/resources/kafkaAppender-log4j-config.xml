@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" packages="de.richter.logging.kafka.appender.KafkaAppender">
+    <Appenders>
+        <Kafka name="NoKafkaServerInConfigShallReturnNull" topic="topic">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Kafka>
+        <Kafka name="NoKafkaTopicInConfigShallReturnNull" serverBootstrap="127.0.0.1:9999">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Kafka>
+        <Kafka name="NoLayoutInConfigShallReturnNull" topic="topic" serverBootstrap="127.0.0.1:9999">
+
+        </Kafka>
+        <Kafka name="MinRequiredFieldsExistsConfigShallHaveAppender" topic="topic" serverBootstrap="127.0.0.1:9999">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Kafka>
+    </Appenders>
+    <Loggers>
+        <Logger name="NoKafkaServerInConfigShallReturnNull" level="trace">
+            <AppenderRef ref="NoKafkaServerInConfigShallReturnNull"/>
+        </Logger>
+        <Logger name="NoKafkaTopicInConfigShallReturnNull" level="trace">
+            <AppenderRef ref="NoKafkaTopicInConfigShallReturnNull"/>
+        </Logger>
+        <Logger name="NoLayoutInConfigShallReturnNull" level="trace">
+            <AppenderRef ref="NoLayoutInConfigShallReturnNull"/>
+        </Logger>
+        <Logger name="MinRequiredFieldsExistsConfigShallHaveAppender" level="trace">
+            <AppenderRef ref="MinRequiredFieldsExistsConfigShallHaveAppender"/>
+        </Logger>
+
+       <!-- <Root level="error">
+            <AppenderRef ref="Console"/>
+        </Root>-->
+    </Loggers>
+</Configuration>

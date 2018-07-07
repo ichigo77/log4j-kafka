@@ -16,9 +16,7 @@ public class KafkaSendMessageSync implements IKafkaSendMessage {
         Future<RecordMetadata> futureResponse =client.send(record);
         try {
             RecordMetadata response = futureResponse.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+        } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
     }

@@ -41,7 +41,10 @@ public class KafkaProperties {
     }
 
     public void setSerializer(SerializerTypes serializer) {
-        this.serializer = serializer;
+
+        if(serializer!= null){
+            this.serializer = serializer;
+        }
     }
 
     public MessageSendType getSendType() {
@@ -49,7 +52,9 @@ public class KafkaProperties {
     }
 
     public void setSendType(MessageSendType sendType) {
-        this.sendType = sendType;
+        if(sendType != null) {
+            this.sendType = sendType;
+        }
     }
 
     public Properties GetKafkaProperties(){

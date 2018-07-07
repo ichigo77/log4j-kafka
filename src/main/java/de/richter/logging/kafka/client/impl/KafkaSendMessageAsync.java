@@ -10,11 +10,8 @@ import org.apache.kafka.clients.producer.RecordMetadata;
 public class KafkaSendMessageAsync implements IKafkaSendMessage {
     @Override
     public void sendKafkaMessage(Producer client, ProducerRecord record) {
-        client.send(record, new Callback() {
-            @Override
-            public void onCompletion(RecordMetadata recordMetadata, Exception e) {
-                //TODO: handle and log exception
-            }
+        client.send(record, (recordMetadata, e) -> {
+        //    System.out.println(e);
         });
     }
 

@@ -20,7 +20,7 @@ import static org.mockito.Mockito.*;
 
 class KafkaSendMessageTest {
 
-    Producer<String,String> producer;
+    private Producer<String,String> producer;
     long pausedTime = 6000;
 
     @BeforeEach
@@ -37,14 +37,14 @@ class KafkaSendMessageTest {
         });
         when(producer.send(any())).thenAnswer(new Answer<FutureRecordMetadata>() {
             @Override
-            public FutureRecordMetadata answer(InvocationOnMock invocationOnMock) throws Throwable {
+            public FutureRecordMetadata answer(InvocationOnMock invocationOnMock) {
                 return futureRecord;
             }
         });
     }
 
     @Test
-    void sendKafkaMessageSync() throws ExecutionException, InterruptedException {
+    void sendKafkaMessageSync() {
         ProducerRecord<String,String> record = new ProducerRecord("topic","value");
         IKafkaSendMessage messageClient = new KafkaSendMessageSync();
         long start = System.currentTimeMillis();
